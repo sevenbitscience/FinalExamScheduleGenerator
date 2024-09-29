@@ -9,21 +9,18 @@ function init(){
 function generate(){
     // takes in CRN from text box,
     var div = document.getElementById("crn")
-    var CRN = div.innerHTML
+    var CRN = div.innerHTML;
     // compares in our JSON file
-    fetchJSON();
+    // var time = fetchJSON();
+    const fetchTime = async() => {
+        let time = await fetch("https://raw.githubusercontent.com/vincentdinic/FinalExamScheduleGenerator/refs/heads/main/CRNsAndExams.json");
+        return time.json();
+    };
     // outputs in some way
+    let time = fetchTime();
+    console.log(time);
+    // for next time, unwrap the promise so we can access individual CRN time.
+    console.log(time.CRN);
 }
 
-function fetchJSON(){
-    fetch("C:\Users\drago\CS\_personalCS\FinalExamScheduleGenerator\CRNsAndExams.json")
-    .then((res) => {
-        if (!res.ok){
-            throw new Error("HTTP error! Status: ${res.status}");
-        }
-        return res.json();
-    })
-    .then((data) => 
-    console.log(data).catch((error) =>
-        console.error("Unable to fetch data:", error)));
-}
+
