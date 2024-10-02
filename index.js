@@ -45,6 +45,13 @@ function addCourseEntryBlock() {
 	courseCount = courseBlockIDNumber+1;
 }
 
+function deleteCourseEntry() {
+	if (courseCount != 1) {
+		document.getElementById("course"+(courseCount-1)).remove();
+		courseCount--;
+	}
+}
+
 function generate() {
 	for (var i = 0; i < courseCount; i++) {
 		console.log("Finding course " + i);
