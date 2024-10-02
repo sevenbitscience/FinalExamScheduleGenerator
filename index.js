@@ -1,11 +1,3 @@
-
-
-
-// init function:
-function init(){
- 
-}
-
 function generate(){
     // takes in CRN from text box,
     var div = document.getElementById("crn")
@@ -22,5 +14,3 @@ function generate(){
     // for next time, unwrap the promise so we can access individual CRN time.
     console.log(time.CRN);
 }
-
-
