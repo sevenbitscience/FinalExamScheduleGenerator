@@ -13,7 +13,37 @@ fetch(examsJsonUrl)
 		CRNsAndExams= examTimes
 	});
 
-var courseCount = 1;
+var courseCount = 0;
+
+function init() {
+	addCourseEntryBlock(courseCount);
+}
+
+function addCourseEntryBlock() {
+	courseBlockIDNumber = courseCount;
+	let allCourses = document.getElementById("allCourses");
+	let courseContainerDiv = document.createElement("div");  // The div that wraps each CRN entry block
+	courseContainerDiv.setAttribute("id", "course"+courseBlockIDNumber);
+	let CRNLabel = document.createElement("label");
+	CRNLabel.setAttribute("for", "crn"+courseBlockIDNumber);
+	CRNLabel.textContent = "CRN:";
+	let CRNField = document.createElement("input");
+	CRNField.setAttribute("type", "text");
+	CRNField.setAttribute("id", "crn"+courseBlockIDNumber);
+	
+	let resultField = document.createElement("b");
+	resultField.setAttribute("id", "examTime"+courseBlockIDNumber);
+
+	// Add all these elements to the div
+	courseContainerDiv.appendChild(CRNLabel);
+	courseContainerDiv.appendChild(CRNField);
+	courseContainerDiv.appendChild(resultField);
+
+	// add this course block to allCourses
+	allCourses.appendChild(courseContainerDiv);
+
+	courseCount = courseBlockIDNumber+1;
+}
 
 function generate() {
 	for (var i = 0; i < courseCount; i++) {
