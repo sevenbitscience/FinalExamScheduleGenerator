@@ -13,14 +13,18 @@ fetch(examsJsonUrl)
 		CRNsAndExams= examTimes
 	});
 
+var courseCount = 1;
+
 function generate() {
-	console.log("Finding course " + 0);
-	// takes in CRN from text box,
-	let CRN = document.getElementById("crn"+0).value;
-	console.log("Finding for CRN");
-	console.log(CRN);
-	console.log(CRNsAndExams[CRN]);
-	display(CRNsAndExams[CRN], 0);
+	for (var i = 0; i < courseCount; i++) {
+		console.log("Finding course " + i);
+		// takes in CRN from text box,
+		let CRN = document.getElementById("crn"+i).value;
+		console.log("Finding for CRN");
+		console.log(CRN);
+		console.log(CRNsAndExams[CRN]);
+		display(CRNsAndExams[CRN], i);
+	}
 }
 
 function display(examDateTime, courseNumber) {
