@@ -1,5 +1,5 @@
 // URL to fetch to the JSON CRN exam-time pairs
-const examsJsonUrl = "https://raw.githubusercontent.com/vincentdinic/FinalExamScheduleGenerator/refs/heads/main/CRNsAndExams.json";
+const examsJsonUrl = "https://raw.githubusercontent.com/sevenbitscience/FinalExamScheduleGenerator/refs/heads/main/CRNsAndExams.json";
 // Initiallize the var to hold the JSON data
 //
 // Potentially problematic if user tries to search json
@@ -24,6 +24,8 @@ function addCourseEntryBlock() {
 	let allCourses = document.getElementById("allCourses");
 	let courseContainerDiv = document.createElement("div");  // The div that wraps each CRN entry block
 	courseContainerDiv.setAttribute("id", "course"+courseBlockIDNumber);
+
+	let spacer = document.createElement("br");
 	let CRNLabel = document.createElement("label");
 	CRNLabel.setAttribute("for", "crn"+courseBlockIDNumber);
 	CRNLabel.textContent = "CRN:";
@@ -35,6 +37,7 @@ function addCourseEntryBlock() {
 	resultField.setAttribute("id", "examTime"+courseBlockIDNumber);
 
 	// Add all these elements to the div
+	courseContainerDiv.appendChild(spacer);
 	courseContainerDiv.appendChild(CRNLabel);
 	courseContainerDiv.appendChild(CRNField);
 	courseContainerDiv.appendChild(resultField);
@@ -59,7 +62,7 @@ function generate() {
 		let CRN = document.getElementById("crn"+i).value;
 		console.log("Finding for CRN");
 		console.log(CRN);
-		console.log(CRNsAndExams[CRN]);
+		console.log(CRNsAndExams);
 		display(CRNsAndExams[CRN], i);
 	}
 }
