@@ -60,14 +60,13 @@ function generate() {
 		console.log("Finding course " + i);
 		// takes in CRN from text box,
 		let CRN = document.getElementById("crn"+i).value;
-		console.log("Finding for CRN");
-		console.log(CRN);
-		console.log(CRNsAndExams);
+		console.log("CRN = " + CRN);
+		console.log("Found " + CRNsAndExams[CRN]);
 		display(CRNsAndExams[CRN], i);
 	}
 }
 
 function display(examDateTime, courseNumber) {
 	let textElement = document.getElementById("examTime"+courseNumber);
-	textElement.textContent = examDateTime;
+	textElement.textContent = examDateTime[0] + "'s exam is at " + examDateTime[1];
 }
