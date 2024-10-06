@@ -6,12 +6,13 @@
         </title>
         <link rel="stylesheet" href="page.css">
     </head>
-    <body>
-        <div id="course0">
-            <label for="crn">CRN:</label>
-            <input type="text" id="crn0">
-            <b id="examTime0"></b>
-        </div>
+    <body onload="init()">
+		<div id="controls">
+			<button onclick="addCourseEntryBlock()">Add Course</button>
+			<button onclick="deleteCourseEntry()">Remove Course</button>
+		</div>
+		<div id="allCourses">
+		</div>
         <br>
         <button onclick="generate()">Get Exam Time</button>
     </body>
