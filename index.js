@@ -1,5 +1,5 @@
 // URL to fetch to the JSON CRN exam-time pairs
-const examsJsonUrl = "https://raw.githubusercontent.com/vincentdinic/FinalExamScheduleGenerator/refs/heads/main/CRNsAndExams.json";
+const examsJsonUrl = "https://raw.githubusercontent.com/sevenbitscience/FinalExamScheduleGenerator/refs/heads/main/CRNsAndExams.json";
 // Initiallize the var to hold the JSON data
 //
 // Potentially problematic if user tries to search json
@@ -13,17 +13,60 @@ fetch(examsJsonUrl)
 		CRNsAndExams= examTimes
 	});
 
+var courseCount = 0;
+
+function init() {
+	addCourseEntryBlock(courseCount);
+}
+
+function addCourseEntryBlock() {
+	courseBlockIDNumber = courseCount;
+	let allCourses = document.getElementById("allCourses");
+	let courseContainerDiv = document.createElement("div");  // The div that wraps each CRN entry block
+	courseContainerDiv.setAttribute("id", "course"+courseBlockIDNumber);
+
+	let spacer = document.createElement("br");
+	let CRNLabel = document.createElement("label");
+	CRNLabel.setAttribute("for", "crn"+courseBlockIDNumber);
+	CRNLabel.textContent = "CRN:";
+	let CRNField = document.createElement("input");
+	CRNField.setAttribute("type", "text");
+	CRNField.setAttribute("id", "crn"+courseBlockIDNumber);
+	
+	let resultField = document.createElement("b");
+	resultField.setAttribute("id", "examTime"+courseBlockIDNumber);
+
+	// Add all these elements to the div
+	courseContainerDiv.appendChild(spacer);
+	courseContainerDiv.appendChild(CRNLabel);
+	courseContainerDiv.appendChild(CRNField);
+	courseContainerDiv.appendChild(resultField);
+
+	// add this course block to allCourses
+	allCourses.appendChild(courseContainerDiv);
+
+	courseCount = courseBlockIDNumber+1;
+}
+
+function deleteCourseEntry() {
+	if (courseCount != 1) {
+		document.getElementById("course"+(courseCount-1)).remove();
+		courseCount--;
+	}
+}
+
 function generate() {
-	console.log("Finding course " + 0);
-	// takes in CRN from text box,
-	let CRN = document.getElementById("crn"+0).value;
-	console.log("Finding for CRN");
-	console.log(CRN);
-	console.log(CRNsAndExams[CRN]);
-	display(CRNsAndExams[CRN], 0);
+	for (var i = 0; i < courseCount; i++) {
+		console.log("Finding course " + i);
+		// takes in CRN from text box,
+		let CRN = document.getElementById("crn"+i).value;
+		console.log("CRN = " + CRN);
+		console.log("Found " + CRNsAndExams[CRN]);
+		display(CRNsAndExams[CRN], i);
+	}
 }
 
 function display(examDateTime, courseNumber) {
 	let textElement = document.getElementById("examTime"+courseNumber);
-	textElement.textContent = examDateTime;
+	textElement.textContent = examDateTime[0] + "'s exam is at " + examDateTime[1];
 }
