@@ -1,5 +1,5 @@
 // URL to fetch to the JSON CRN exam-time pairs
-const examsJsonUrl = "https://raw.githubusercontent.com/sevenbitscience/FinalExamScheduleGenerator/refs/heads/main/CRNsAndExams.json";
+const examsJsonUrl = "https://raw.githubusercontent.com/vincentdinic/FinalExamScheduleGenerator/refs/heads/main/CRNsAndExams.json";
 // Initiallize the var to hold the JSON data
 //
 // Potentially problematic if user tries to search json
